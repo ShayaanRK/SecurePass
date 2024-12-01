@@ -1,24 +1,2 @@
-# passwordproject
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# SecurePass
+Secure Pass is a secure and user-friendly password manager that helps you store, organize, and retrieve your passwords effortlessly. With robust encryption, easy access, and cross-platform support, it simplifies password management while keeping your sensitive data safe and protected.
