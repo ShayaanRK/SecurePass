@@ -2,7 +2,7 @@
   <div>
     <div class="test">
       <h1>Testing</h1>
-      <button>click here</button>
+      <button @click="handleClick">click here</button>
     </div>
   </div>
 </template>
@@ -12,6 +12,11 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    handleClick() {
+      alert('Button clicked')
+    }
   }
 }
 </script>
