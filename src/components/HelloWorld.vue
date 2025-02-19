@@ -2,6 +2,7 @@
   <div>
     <div class="test">
       <h1>Testing</h1>
+      <button>click here</button>
     </div>
   </div>
 </template>
