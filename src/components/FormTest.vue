@@ -8,12 +8,14 @@
     <div v-if="password">
       <h3>Generated Password:</h3>
       <p>{{ password }}</p>
+      <button @click="handleDownload">Download Password</button>
     </div>
   </div>
 </template>
 
 <script>
 import { generatePassword } from '../utils/passwordGenerator';
+import { downloadPassword } from '@/utils/fileDownloader';
 
 export default {
   name: 'FormTest',
@@ -26,7 +28,10 @@ export default {
   methods: {
     handleSubmit() {
       this.password = generatePassword(this.length);
-    }
+    },
+    handleDownload() {
+      downloadPassword(this.password);
+    },
   }
 };
 </script>
