@@ -7,6 +7,8 @@
             <input type="text" placeholder="Search" />
          </form>
       </div>
+
+      <button @click="handleClick">click here</button>
     </div>
   </div>
 </template>
@@ -16,6 +18,11 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  methods: {
+    handleClick() {
+      alert('Button clicked')
+    }
   }
 }
 </script>
