@@ -2,6 +2,11 @@
   <div>
     <div class="test">
       <h1>Testing</h1>
+      <div class="myClass">
+         <form>
+            <input type="text" placeholder="Search" />
+         </form>
+      </div>
     </div>
   </div>
 </template>
@@ -20,4 +25,8 @@ export default {
 test {
   color: #42b983;
 }
+myClass {
+  color: #42b983;
+}
 </style>
+
