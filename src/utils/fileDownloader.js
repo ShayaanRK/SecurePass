@@ -1,5 +1,11 @@
 export function downloadPassword(password, siteName) {
-    const content = `${siteName}: ${password}`;
+    let content = `${siteName}: ${password}\n`;
+
+    for (let i = 0; i < localStorage.length; i++) {
+        const key = localStorage.key(i);
+        const value = localStorage.getItem(key);
+        content += `${key}: ${value}\n`;
+    }
     const blob = new Blob([content], { type: 'text/plain' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -10,3 +16,4 @@ export function downloadPassword(password, siteName) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   }
+

@@ -9,6 +9,7 @@
         <label for="length">Password Length:</label>#
         <input type="number" v-model="length" min="6" max="30" required />
         <button type="submit">Generate Password</button>
+        <button type="button" @click="clearStorage">clear storage</button>
       </form>
     </div>
 
@@ -41,12 +42,16 @@ export default {
     },
     handleDownload() {
       downloadPassword(this.password, this.site);
+
     },
     addPassword() {
       localStorage.setItem(this.siteName, this.password);
 
       alert('Password added successfully');
-      console.log(localStorage.getItem('locker'));
+    },
+    clearStorage() {
+      localStorage.clear();
+      alert('Storage cleared');
     },
   },
   onMounted() {
