@@ -2,18 +2,21 @@
   <div>
     <HelloWorld/>
     <FormTest/>
+    <FileUpload />
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 import FormTest from './components/FormTest.vue';
+import FileUpload from './components/FileUpload.vue';
 
 export default {
   name: 'App',
   components: {
     HelloWorld,
     FormTest,
+    FileUpload,
   }
 }
 </script>
