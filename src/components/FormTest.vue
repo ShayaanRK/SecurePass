@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { generatePassword } from '../utils/passwordGenerator';
+import { generateMemorablePassword } from '../utils/passwordGenerator';
 import { downloadPassword } from '@/utils/fileDownloader';
 
 export default {
@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     handleSubmit() {
-      const newPassword = generatePassword(this.length);
+      const newPassword = generateMemorablePassword(this.length);
       this.password = newPassword;
     },
     handleDownload() {
