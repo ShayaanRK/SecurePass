@@ -6,4 +6,4 @@ export function generatePassword(length) {
       password += charset[randomIndex];
     }
     return password;
-  }
+}
