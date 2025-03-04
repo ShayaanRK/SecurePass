@@ -1,11 +1,11 @@
 export function generateMemorablePassword(length, simpleFlag) {
    let password = "";
-   if(simpleFlag==true){
+   if(simpleFlag){
       if (length < 6 || length > 30) {
          throw new Error("Password length must be between 6 and 30 characters.");
       }
    
-      const words = ["Tree", "River", "Ocean", "Cloud", "Storm", "Tiger", "Rocket", "Moon", "Planet", "Eagle"];
+      const words = ["Tree", "River", "Ocean", "Cloud", "Storm", "Tiger", "Rocket", "Moon", "Planet", "Eagle"];   // make a seperate file for words and read from it
       const specialChars = "!@#$%^&*()_+-=";
       const numbers = "0123456789";
       const allChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=";

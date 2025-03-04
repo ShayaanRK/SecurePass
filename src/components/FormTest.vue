@@ -1,35 +1,38 @@
 <template>
+<div>
   <div>
-    <div>
-      <label for="length">Site name:</label>
-      <input type="text" v-model="siteName" required />
-    </div>
-    <div>
-      <form @submit.prevent="handleSubmit">
-        <label for="length">Password Length:</label>#
-        <input type="number" v-model="length" min="6" max="30" required />
-        <input type="number" v-model="length" min="3" max="30" required />
-        <button type="submit">Generate Password</button>
-        <button type="button" @click="clearStorage">clear storage</button>
-      </form>
-    </div>
+    <div class="test">
+      <h1>Password Generator</h1>
+      <div>
+        <label for="passwordType">Choose Password Type:</label>
+        <select v-model="simpleFlag" id="passwordType" required>      <!-- new form for password generation -->
+          <option :value = true>Simple</option>
+          <option :value = false>Complex</option>
+        </select>
+      </div>
+      <div>                                              
+        <label for="length">Site name:</label>
+        <input type="text" v-model="siteName" required />
+      </div>
+      <div>                                                 <!-- old form for password generation -->
+        <form @submit.prevent="handleSubmit">
+          <label for="length">Password Length:</label>#
+          <input type="number" v-model="length" min="6" max="30" required />
+          <button type="submit">Generate Password</button>
+        </form>
+      </div>
+      
+      <p>Your Password: {{ password }}</p>
+      <p>Name of site: {{ siteName }}</p>
 
-    <div v-if="password">
-      <h3>Generated Password:</h3>
-      <p>{{ password }} {{ siteName }} </p>
-      <button @click="handleDownload">Download Password</button>
-      <button @click="addPassword">Add Password</button>
-    <div v-if="Object.keys(passwords).length">
-      <h3>Stored Passwords:</h3>
-      <ul>
-        <li v-for="(password, site) in passwords" :key="site">
-          {{ site }}: {{ password }}
-        </li>
-      </ul>
-      <button @click="handleDownload">Download Password</button>
-      <button @click="addPassword">Add Password(offline currently)</button>
+      <div v-if="password">
+        <button @click="handleDownload">Download Password</button>
+        <button @click="addPassword">Add Password</button>
+        <button type="button" @click="clearStorage">clear storage</button>
+      </div>
     </div>
   </div>
+</div>
 </template>
 
 <script>
@@ -42,19 +45,18 @@ export default {
     return {
       length: 12,
       password: '',
-      password: {},
       siteName: 'test',
+      simpleFlag: true,
     };
   },
   methods: {
     handleSubmit() {
-      const newPassword = generateMemorablePassword(this.length);
+      const simpleFlagBoolean = this.simpleFlag;
+      const newPassword = generateMemorablePassword(this.length, simpleFlagBoolean);
       this.password = newPassword;
-      const newPassword = generatePassword(this.length);
-      this.$set(this.passwords, this.siteName, newPassword);
     },
     handleDownload() {
-      downloadPassword(this.password, this.site);
+      downloadPassword(this.password, this.siteName);
 
     },
     addPassword() {

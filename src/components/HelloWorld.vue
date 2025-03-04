@@ -1,5 +1,6 @@
 <template>
-  <div>
+  Password Generator
+  <!--  <div>
     <div class="test">
       <h1>Password Generator</h1>
       <label for="passwordType">Choose Password Type:</label>
@@ -10,8 +11,9 @@
       <button @click="handleClick">Generate Password</button>
       <p>Your Password: {{ password }}</p>
     </div>
-  </div>
-</template>
+  </div> -->
+
+</template> 
 
 <script>
 import { generateMemorablePassword } from '../utils/passwordGenerator.js';
