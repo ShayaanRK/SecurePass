@@ -1,11 +1,11 @@
 <template>
     <div>
-      <input type="file" @change="handleFileUpload" />
+      <input type="file" @change="handleFileUpload" ref="fileInput" />
       <div v-if="fileContent">
         <h3>Uploaded File Content:</h3>
         <pre>{{ fileContent }}</pre>
-        <button @click="fileContent = ''">Clear</button>
-        <button @click="checkData">Check Data</button>
+        <button @click="clearFileContent">Clear</button>
+        <button @click="checkData">Check Data</button>    <!-- temporary button to check the data -->
         <button @click="addPassword">Add Password</button>
         <button @click="downloadFile">Download File</button>
       </div>
@@ -43,7 +43,7 @@
             }
         });
       },
-      checkData() {
+      checkData() {                         // temporary function to check the data
         console.log(this.parsedData);
         console.log(this.site + ' ' + this.password);
       },
@@ -53,14 +53,11 @@
         const value = localStorage.getItem(key);
           if (!this.parsedData[key]) {
             this.parsedData[key] = value;
-            this.updateFileContent();
+            this.fileContent = Object.entries(this.parsedData)
+              .map(([key, value]) => `${key}: ${value}`)
+              .join('\n');
           }
         }
-      },
-      updateFileContent() {
-        this.fileContent = Object.entries(this.parsedData)
-          .map(([key, value]) => `${key}: ${value}`)
-          .join('\n');
       },
       downloadFile() {
         const blob = new Blob([this.fileContent], { type: 'text/plain' });
@@ -69,6 +66,13 @@
         a.href = url;
         a.download = 'MySecurePassUpdated.txt';
         a.click();
+      },
+      clearFileContent() {
+        this.fileContent = '';
+        this.parsedData = {};
+        if (this.$refs.fileInput) {
+          this.$refs.fileInput.value = '';
+        }
       },
     }
   };
