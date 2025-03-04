@@ -8,6 +8,7 @@
       <form @submit.prevent="handleSubmit">
         <label for="length">Password Length:</label>#
         <input type="number" v-model="length" min="6" max="30" required />
+        <input type="number" v-model="length" min="3" max="30" required />
         <button type="submit">Generate Password</button>
         <button type="button" @click="clearStorage">clear storage</button>
       </form>
@@ -18,6 +19,15 @@
       <p>{{ password }} {{ siteName }} </p>
       <button @click="handleDownload">Download Password</button>
       <button @click="addPassword">Add Password</button>
+    <div v-if="Object.keys(passwords).length">
+      <h3>Stored Passwords:</h3>
+      <ul>
+        <li v-for="(password, site) in passwords" :key="site">
+          {{ site }}: {{ password }}
+        </li>
+      </ul>
+      <button @click="handleDownload">Download Password</button>
+      <button @click="addPassword">Add Password(offline currently)</button>
     </div>
   </div>
 </template>
@@ -32,6 +42,7 @@ export default {
     return {
       length: 12,
       password: '',
+      password: {},
       siteName: 'test',
     };
   },
@@ -39,6 +50,8 @@ export default {
     handleSubmit() {
       const newPassword = generateMemorablePassword(this.length);
       this.password = newPassword;
+      const newPassword = generatePassword(this.length);
+      this.$set(this.passwords, this.siteName, newPassword);
     },
     handleDownload() {
       downloadPassword(this.password, this.site);
