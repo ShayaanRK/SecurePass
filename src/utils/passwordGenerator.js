@@ -1,6 +1,6 @@
 export function generateMemorablePassword(length, simpleFlag) {
    let password = "";
-   if(simpleFlag){
+   if(simpleFlag===true){
       if (length < 6 || length > 30) {
          throw new Error("Password length must be between 6 and 30 characters.");
       }
